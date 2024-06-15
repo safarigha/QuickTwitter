@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Importing Vazir Font */
+@font-face {
+  font-family: "Vazir-Black";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Vazir-Black"),
+    url(../../public/fonts/Vazir-Black-FD.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Vazir-Regular";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Vazir-Regular"),
+    url(../../public/fonts/Vazir-Regular-FD.woff2) format("woff2");
+}
+
+/* Custom Font */
+.custom-font {
+  font-family: "Vazir", sans-serif;
+}
+
+.border-custom-blue {
+  border-color: #3f5878;
+}
