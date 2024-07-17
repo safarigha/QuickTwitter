@@ -1,22 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { Axios } from "../configs/serverConfig";
 import API_PATHS from "../configs/API_PATHS";
-
-interface AddTweetData {
-  body: string;
-  tags: string[];
-}
-
-// interface AddCommentData {
-//   body: string;
-//   tags: string[];
-//   reply: number[];
-// }
-
-interface AddTweetData {
-  body: string;
-  tags: string[];
-}
+import { AddTweetData } from "../configs/interfaces";
 
 export const useAddTweet = () => {
   return useMutation({

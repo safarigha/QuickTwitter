@@ -3,41 +3,16 @@ import Layout from "../Layout";
 import { RiUserLine, RiMessage3Line, RiHeartLine } from "react-icons/ri";
 import TweerForm from "../views/TweetForm";
 import useProfileData from "../components/profile";
-// import { useFeedTweet } from "../components/tweetList";
-// import formatDate from "../hooks/generateDate";
-
-type Tweet = {
-  id: number;
-  body: string;
-  reply: [];
-  comment: [];
-  favorites: [];
-  favcount: number;
-  tags: [];
-  createdAt: string;
-  user: {
-    username: string;
-    id: number;
-  };
-};
-
-// type User = {
-//   id: number;
-//   username: string;
-// };
-
-const followingTweets = [
-  { name: "آرزو4", tweet: "این یک توییت 4 است", tags: "4زندگی_زیباست" },
-  { name: "آرزو5", tweet: "این یک توییت 5 است", tags: "5زندگی_زیباست" },
-  { name: "آرزو6", tweet: "این یک توییت 6 است", tags: "6زندگی_زیباست" },
-];
+import formatDate from "../hooks/generateDate";
+import { useFollowingTweets } from "../components/tweetList";
+import { TweetMainForm } from "../configs/interfaces";
 
 const MainForm: React.FC = () => {
   const [activeTab, setActiveTab] = useState("you");
   const { safeUserData } = useProfileData();
-  const yourTweets: Tweet[] = safeUserData.tweets ?? [];
-  // const { followingUserData } = useFeedTweet();
-  // const followingTweets: Tweet[] = followingUserData.tweets ?? [];
+  const yourTweets: TweetMainForm[] = safeUserData.tweets ?? [];
+  const { followingUserData } = useFollowingTweets();
+  const followingTweets: TweetMainForm[] = followingUserData.tweets ?? [];
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
@@ -67,7 +42,7 @@ const MainForm: React.FC = () => {
               }`}
               onClick={() => handleTabChange("following")}
             >
-              دنبال‌شونده
+              فالووینگ
             </button>
           </div>
           {/* Tweet posted */}
@@ -85,9 +60,13 @@ const MainForm: React.FC = () => {
                         className="text-blue-500 cursor-pointer float-right mr-2 ml-2 border border-custom-blue rounded-full"
                         size={50}
                       />
-                      <p>{tweet.body}</p>
-                      <p> {tweet.tags}#</p>
-                      <div className="mb-4 ml-4">
+                      <p className="m-4">{tweet.body}</p>
+                      {tweet.tags.map((tag, index) => (
+                        <p className="inline m-1 text-sm" key={index}>
+                          {tag}#
+                        </p>
+                      ))}
+                      <div className=" ml-4 flex items-center">
                         <RiMessage3Line
                           className="text-blue-500 cursor-pointer float-left mr-4"
                           size={20}
@@ -96,6 +75,9 @@ const MainForm: React.FC = () => {
                           className="text-blue-500 cursor-pointer float-left mr-4"
                           size={20}
                         />
+                        <p className="text-left text-sm">
+                          {formatDate(tweet.createdAt)}
+                        </p>
                       </div>
                     </li>
                   ))
@@ -108,10 +90,10 @@ const MainForm: React.FC = () => {
                         className="text-blue-500 cursor-pointer float-right mr-2 ml-2 border border-custom-blue rounded-full"
                         size={50}
                       />
-                      <h1 className="font-bold">{tweet.name}</h1>
-                      <p>{tweet.tweet}</p>
+                      <h1 className="font-bold">{tweet.user.username}</h1>
+                      <p>{tweet.body}</p>
                       <p> {tweet.tags}#</p>
-                      <div className="mb-4 ml-4">
+                      <div className=" ml-4 flex items-center">
                         <RiMessage3Line
                           className="text-blue-500 cursor-pointer float-left mr-4"
                           size={20}
@@ -120,6 +102,9 @@ const MainForm: React.FC = () => {
                           className="text-blue-500 cursor-pointer float-left mr-4"
                           size={20}
                         />
+                        <p className="text-left text-sm">
+                          {formatDate(tweet.createdAt)}
+                        </p>
                       </div>
                     </li>
                   ))}

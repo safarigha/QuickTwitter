@@ -1,12 +1,12 @@
-export type FormData = {
-  username: string;
-  password: string;
-};
+import {
+  FormDataLoginValidation,
+  FormErrorLoginValidation,
+} from "../configs/interfaces";
 
-export type FormError = Partial<FormData>;
-
-export const validateLogin = (formData: FormData): FormError => {
-  const newError: FormError = {};
+export const validateLogin = (
+  formData: FormDataLoginValidation
+): FormErrorLoginValidation => {
+  const newError: FormErrorLoginValidation = {};
 
   let hasError = false;
 

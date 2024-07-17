@@ -1,80 +1,130 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-
-type User = {
-  id: number;
-  username: string;
-};
-
-type Hashtag = {
-  id: number;
-  name: string;
-};
-
-const users: User[] = [
-  { id: 1, username: "user1" },
-  { id: 2, username: "user2" },
-  { id: 3, username: "user3" },
-  { id: 4, username: "user4" },
-  { id: 5, username: "user5" },
-];
-
-const hashtags: Hashtag[] = [
-  { id: 1, name: "هشتگ1" },
-  { id: 2, name: "هشتگ2" },
-  { id: 3, name: "هشتگ3" },
-  // ادامه لیست هشتگ‌ها
-];
+import { useFollowUser } from "../components/followUser";
+import { toast } from "react-toastify";
+import { RiUserLine } from "react-icons/ri";
+import formatDate from "../hooks/generateDate";
+import useSearch from "../components/search";
+import { TweetData } from "../configs/interfaces";
 
 const RightSidebar: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [followUser, setFollowUser] = useState<string>("");
+  const followUserMutation = useFollowUser();
+  const { safeUserData } = useSearch(searchTerm);
 
-  const filteredUsers = users.filter((user) =>
-    user.username.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const searchData: TweetData[] = safeUserData.tweets ?? [];
+
+  const handleKeyDownSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (searchTerm.trim() !== "") {
+      }
+    }
+  };
+
+  const handleKeyDownfollowUser = async (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === "Enter" && followUser.trim() !== "") {
+      event.preventDefault();
+      try {
+        await followUserMutation.mutate(
+          { username: followUser },
+          {
+            onSuccess: () => {
+              toast.success("کاربر با موفقیت فالوو شد", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+              setFollowUser("");
+            },
+            onError: (error: any) => {
+              toast.error(
+                `خطا در فالوو کردن کاربر: ${
+                  error.response?.data?.message || error.message
+                }`,
+                {
+                  position: "top-center",
+                  autoClose: 3000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                }
+              );
+            },
+          }
+        );
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  };
 
   return (
     <aside className="w-1/4 p-4 border-custom-blue border-l">
-      {/* Search Box */}
-      <div className="mb-4 mr-20">
-        <input
-          type="text"
-          placeholder="جستجو"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full p-3 rounded-full text-right bg-blue-900"
-        />
-      </div>
-
       {/* Follow Suggestions */}
       <div className="border-custom-blue border rounded-3xl p-4 mb-4 mr-20">
-        <h3 className="mb-2 text-right pb-2">پیشنهاد‌ دنبال‌کننده</h3>
-        {filteredUsers.slice(0, 3).map((user) => (
-          <div key={user.id} className="flex items-center justify-between mb-2">
-            <span>{user.username}</span>
-            <button className="bg-blue-500 text-white px-2 py-1 rounded-3xl w-20">
-              دنبال‌کردن
-            </button>
-          </div>
-        ))}
-        <NavLink to="/follow-suggestions" className="text-blue-500">
-          نمایش بیشتر
-        </NavLink>
+        <h3 className="mb-2 text-right pb-2">انتخاب فالووینگ‌ها</h3>
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="نام کاربری را وارد کنید"
+            value={followUser}
+            onChange={(e) => setFollowUser(e.target.value)}
+            onKeyDown={handleKeyDownfollowUser}
+            className="w-full rounded-full text-center text-xm bg-blue-900 h-[35px]"
+          />
+          <p className="text-sm text-center text-gray-400">
+            پس از وارد کردن نام کاربری اینتر بزنید
+          </p>
+        </div>
       </div>
 
-      {/* Trending Hashtags */}
+      {/* Search Box */}
       <div className="border-custom-blue border rounded-3xl p-4 mb-4 mr-20">
-        <h3 className="mb-2 text-right pb-2">هشتگ‌ها</h3>
-        <ul>
-          {hashtags.map((hashtag) => (
-            <li key={hashtag.id} className="mb-2">
-              #{hashtag.name}
-            </li>
-          ))}
+        <div>
+          <input
+            type="text"
+            placeholder="جستجو"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleKeyDownSearch}
+            className="w-full h-[35px] p-3 rounded-full text-right bg-blue-900"
+          />
+        </div>
+
+        {/* Search list */}
+        <ul className="w-[250px] ">
+          {searchTerm.trim() !== "" &&
+            searchData.map((tweet, index) => (
+              <li key={index} className="p-2 text-right">
+                <RiUserLine
+                  className="text-blue-500 cursor-pointer float-right  ml-2 border border-custom-blue rounded-full"
+                  size={25}
+                />
+                <p>{tweet.body}</p>
+                {tweet.tags.map((tag, index) => (
+                  <p className="inline text-xs" key={index}>
+                    {tag}#
+                  </p>
+                ))}
+                <div className="flex items-center">
+                  <p className="text-left text-xs">
+                    {formatDate(tweet.createdAt)}
+                  </p>
+                </div>
+              </li>
+            ))}
         </ul>
-        <NavLink to="/trends" className="text-blue-500">
-          نمایش بیشتر
-        </NavLink>
       </div>
       {/* Footer Links */}
       <div className="text-xs text-center mr-20">

@@ -1,40 +1,19 @@
 import React, { useState } from "react";
 import Layout from "../Layout";
-import { RiUserLine } from "react-icons/ri";
+import { RiHeartLine, RiMessage3Line, RiUserLine } from "react-icons/ri";
 import useProfileData from "../components/profile";
 import formatDate from "../hooks/generateDate";
-
-type User = {
-  id: number;
-  username: string;
-};
-
-type Tweet = {
-  id: number;
-  body: string;
-  reply: [];
-  comment: [];
-  favorites: [];
-  favcount: number;
-  tags: [];
-  createdAt: string;
-  user: {
-    username: string;
-    id: number;
-  };
-};
+import { TweetData, UserProfileForm } from "../configs/interfaces";
 
 const ProfileForm: React.FC = () => {
   const { safeUserData } = useProfileData();
 
-  const youTweets: Tweet[] = safeUserData.tweets ?? [];
-  const followers: User[] = safeUserData.followers ?? [];
-  const followings: User[] = safeUserData.followings ?? [];
+  const youTweets: TweetData[] = safeUserData.tweets ?? [];
+  const followers: UserProfileForm[] = safeUserData.followers ?? [];
+  const followings: UserProfileForm[] = safeUserData.followings ?? [];
 
-  // متغیری برای ذخیره فعال بودن تب‌ها
   const [activeTab, setActiveTab] = useState("post");
 
-  // تابعی برای تغییر فعال بودن تب
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
   };
@@ -59,8 +38,8 @@ const ProfileForm: React.FC = () => {
                 : "بیوگرافی هنوز ثبت نکردی"}
             </p>
             <div className="p-2">
-              <p className="inline">({followers.length}) دنبال‌کننده</p>
-              <p className="inline ml-4">دنبال‌شونده ({followings.length})</p>
+              <p className="inline">({followers.length}) فالوور</p>
+              <p className="inline ml-4">فالووینگ ({followings.length})</p>
             </div>
           </div>
           {/* tab */}
@@ -83,7 +62,7 @@ const ProfileForm: React.FC = () => {
               }`}
               onClick={() => handleTabChange("following")}
             >
-              دنبال‌شوندگان
+              فالووینگ‌ها
             </button>
             <button
               className={`w-full px-4 py-2 mx-2 border-b-4 border-transparent hover:bg-blue-900 focus:outline-none ${
@@ -93,7 +72,7 @@ const ProfileForm: React.FC = () => {
               }`}
               onClick={() => handleTabChange("followers")}
             >
-              دنبال‌کنندگان
+              فالوورها
             </button>
           </div>
           {/* Post list */}
@@ -106,15 +85,25 @@ const ProfileForm: React.FC = () => {
                       className="text-blue-500 cursor-pointer float-right mr-2 ml-2 border border-custom-blue rounded-full"
                       size={50}
                     />
-                    <p>{tweet.body}</p>
+                    <p className="m-4">{tweet.body}</p>
                     {tweet.tags.map((tag, index) => (
-                      <p className="inline" key={index}>
+                      <p className="inline m-1 text-sm" key={index}>
                         {tag}#
                       </p>
                     ))}
-                    <p className="text-left text-sm">
-                      {formatDate(tweet.createdAt)}
-                    </p>
+                    <div className=" ml-4 flex items-center">
+                      <RiMessage3Line
+                        className="text-blue-500 cursor-pointer float-left mr-4"
+                        size={20}
+                      />
+                      <RiHeartLine
+                        className="text-blue-500 cursor-pointer float-left mr-4"
+                        size={20}
+                      />
+                      <p className="text-left text-sm">
+                        {formatDate(tweet.createdAt)}
+                      </p>
+                    </div>
                   </li>
                 ))}
               {/*  followings list */}
@@ -125,12 +114,7 @@ const ProfileForm: React.FC = () => {
                       className="text-blue-500 cursor-pointer float-right mr-2 ml-2 border border-custom-blue rounded-full"
                       size={20}
                     />
-                    <h1>
-                      {user.username}
-                      <button className="float-left bg-blue-500 text-white px-2 py-1 rounded-3xl w-20 ">
-                        حذف
-                      </button>
-                    </h1>
+                    <h1>{user.username}</h1>
                   </li>
                 ))}
               {/* followers list */}
@@ -141,12 +125,7 @@ const ProfileForm: React.FC = () => {
                       className="text-blue-500 cursor-pointer float-right mr-2 ml-2 border border-custom-blue rounded-full"
                       size={20}
                     />
-                    <h1>
-                      {user.username}
-                      <button className="float-left bg-blue-500 text-white px-2 py-1 rounded-3xl w-20 ">
-                        دنبال‌کردن
-                      </button>
-                    </h1>
+                    <h1>{user.username}</h1>
                   </li>
                 ))}
             </ul>

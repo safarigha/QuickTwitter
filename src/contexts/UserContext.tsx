@@ -1,9 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-
-interface UserContextType {
-  username: string;
-  setUsername: (username: string) => void;
-}
+import { UserContextType } from "../configs/interfaces";
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
