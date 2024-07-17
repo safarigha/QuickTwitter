@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../Layout";
-import { RiUserLine } from "react-icons/ri";
+import { RiHeartLine, RiMessage3Line, RiUserLine } from "react-icons/ri";
 import useProfileData from "../components/profile";
 import formatDate from "../hooks/generateDate";
 
@@ -106,15 +106,25 @@ const ProfileForm: React.FC = () => {
                       className="text-blue-500 cursor-pointer float-right mr-2 ml-2 border border-custom-blue rounded-full"
                       size={50}
                     />
-                    <p>{tweet.body}</p>
+                    <p className="m-4">{tweet.body}</p>
                     {tweet.tags.map((tag, index) => (
-                      <p className="inline" key={index}>
+                      <p className="inline m-1 text-sm" key={index}>
                         {tag}#
                       </p>
                     ))}
-                    <p className="text-left text-sm">
-                      {formatDate(tweet.createdAt)}
-                    </p>
+                    <div className=" ml-4 flex items-center">
+                      <RiMessage3Line
+                        className="text-blue-500 cursor-pointer float-left mr-4"
+                        size={20}
+                      />
+                      <RiHeartLine
+                        className="text-blue-500 cursor-pointer float-left mr-4"
+                        size={20}
+                      />
+                      <p className="text-left text-sm">
+                        {formatDate(tweet.createdAt)}
+                      </p>
+                    </div>
                   </li>
                 ))}
               {/*  followings list */}
