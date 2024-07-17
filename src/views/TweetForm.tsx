@@ -108,10 +108,7 @@ const TweetForm: React.FC = () => {
               size={20}
             />
           </div>
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded-3xl mr-8"
-            // onClick={handleTweetSubmit}
-          >
+          <button className="px-4 py-2 bg-blue-500 text-white rounded-3xl mr-8">
             ثبت
           </button>
         </div>

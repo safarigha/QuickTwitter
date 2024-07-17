@@ -7,6 +7,7 @@ import formatDate from "../hooks/generateDate";
 type User = {
   id: number;
   username: string;
+  biography: string;
 };
 
 type Tweet = {
@@ -135,12 +136,7 @@ const ProfileForm: React.FC = () => {
                       className="text-blue-500 cursor-pointer float-right mr-2 ml-2 border border-custom-blue rounded-full"
                       size={20}
                     />
-                    <h1>
-                      {user.username}
-                      <button className="float-left bg-blue-500 text-white px-2 py-1 rounded-3xl w-20 ">
-                        حذف
-                      </button>
-                    </h1>
+                    <h1>{user.username}</h1>
                   </li>
                 ))}
               {/* followers list */}
@@ -151,12 +147,7 @@ const ProfileForm: React.FC = () => {
                       className="text-blue-500 cursor-pointer float-right mr-2 ml-2 border border-custom-blue rounded-full"
                       size={20}
                     />
-                    <h1>
-                      {user.username}
-                      <button className="float-left bg-blue-500 text-white px-2 py-1 rounded-3xl w-20 ">
-                        فالوو
-                      </button>
-                    </h1>
+                    <h1>{user.username}</h1>
                   </li>
                 ))}
             </ul>
