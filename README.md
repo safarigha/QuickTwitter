@@ -41,4 +41,5 @@ To use this project, follow these steps:
   `npm install`
 - **Run Development Server:** Finally, start the development server to run the project:
   `npm run dev`
+
   By following these steps, your project will be loaded using Vite and running in development mode, ready to be viewed in your web browser.
