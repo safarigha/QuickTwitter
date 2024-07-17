@@ -12,7 +12,7 @@ export const API_PATHS = {
   COMMUNITIES: "communities",
   MORE: "more",
   ADD_TWEET: "tweet",
-  FEED_TWEET: "tweet",
+  FEED_TWEET: "feed",
 };
 
 export default API_PATHS;
