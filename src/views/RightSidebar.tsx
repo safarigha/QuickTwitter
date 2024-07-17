@@ -118,7 +118,7 @@ const RightSidebar: React.FC = () => {
 
         {/* Search list */}
         <ul className="w-[250px] ">
-          {searchData &&
+          {searchTerm.trim() !== "" &&
             searchData.map((tweet, index) => (
               <li key={index} className="p-2 text-right">
                 <RiUserLine
