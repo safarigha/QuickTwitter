@@ -68,7 +68,7 @@ const MainForm: React.FC = () => {
               }`}
               onClick={() => handleTabChange("following")}
             >
-              دنبال‌شونده
+              فالووینگ
             </button>
           </div>
           {/* Tweet posted */}

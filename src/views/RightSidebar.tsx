@@ -45,7 +45,7 @@ const RightSidebar: React.FC = () => {
           { username: followUser },
           {
             onSuccess: () => {
-              toast.success("کاربر با موفقیت دنبال شد", {
+              toast.success("کاربر با موفقیت فالوو شد", {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -59,7 +59,7 @@ const RightSidebar: React.FC = () => {
             },
             onError: (error: any) => {
               toast.error(
-                `خطا در دنبال کردن کاربر: ${
+                `خطا در فالوو کردن کاربر: ${
                   error.response?.data?.message || error.message
                 }`,
                 {
@@ -97,7 +97,7 @@ const RightSidebar: React.FC = () => {
 
       {/* Follow Suggestions */}
       <div className="border-custom-blue border rounded-3xl p-4 mb-4 mr-20">
-        <h3 className="mb-2 text-right pb-2">دنبال‌کردن کاربران</h3>
+        <h3 className="mb-2 text-right pb-2">انتخاب فالووینگ‌ها</h3>
         <div className="mb-4">
           <input
             type="text"
@@ -115,8 +115,7 @@ const RightSidebar: React.FC = () => {
           <div key={user.id} className="flex items-center justify-between mb-2">
             <span>{user.username}</span>
             <button className="bg-blue-500 text-white px-2 py-1 rounded-3xl w-20">
-              دنبال‌کردن
-            </button>
+فالووکردن            </button>
           </div>
         ))} */}
 

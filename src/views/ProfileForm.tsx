@@ -59,8 +59,8 @@ const ProfileForm: React.FC = () => {
                 : "بیوگرافی هنوز ثبت نکردی"}
             </p>
             <div className="p-2">
-              <p className="inline">({followers.length}) دنبال‌کننده</p>
-              <p className="inline ml-4">دنبال‌شونده ({followings.length})</p>
+              <p className="inline">({followers.length}) فالوور</p>
+              <p className="inline ml-4">فالووینگ ({followings.length})</p>
             </div>
           </div>
           {/* tab */}
@@ -83,7 +83,7 @@ const ProfileForm: React.FC = () => {
               }`}
               onClick={() => handleTabChange("following")}
             >
-              دنبال‌شوندگان
+              فالووینگ‌ها
             </button>
             <button
               className={`w-full px-4 py-2 mx-2 border-b-4 border-transparent hover:bg-blue-900 focus:outline-none ${
@@ -93,7 +93,7 @@ const ProfileForm: React.FC = () => {
               }`}
               onClick={() => handleTabChange("followers")}
             >
-              دنبال‌کنندگان
+              فالوورها
             </button>
           </div>
           {/* Post list */}
@@ -154,7 +154,7 @@ const ProfileForm: React.FC = () => {
                     <h1>
                       {user.username}
                       <button className="float-left bg-blue-500 text-white px-2 py-1 rounded-3xl w-20 ">
-                        دنبال‌کردن
+                        فالوو
                       </button>
                     </h1>
                   </li>
