@@ -1,5 +1,3 @@
-// import React, { useEffect } from "react";
-// import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
@@ -9,24 +7,8 @@ import SignUpForm from "../views/SignUpForm";
 import ProfileForm from "../views/ProfileForm";
 
 import ComingSoon from "../views/CommingSoon";
-// import Explore from "../views/Explore";
-// import Notifications from "../views/Notifications";
-// import Messages from "../views/Messages";
-// import Bookmarks from "../views/Bookmarks";
-// import Premium from "../views/Premium";
-// import More from "../views/More";
-// import Communities from "../views/Communities";
 
 const AppRoutes: React.FC = () => {
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token) {
-  //     navigate("/login");
-  //   }
-  // }, [navigate]);
-
   return (
     <Routes>
       <Route path="/login" element={<LoginForm />} />

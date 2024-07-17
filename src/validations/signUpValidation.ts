@@ -42,19 +42,3 @@ export const validateStepTwo = (formData: FormData): FormError => {
   }
   return newError;
 };
-
-// import * as yup from "yup";
-
-// export const signUpSchema = yup.object({
-//   username: yup.string().required("نام کاربری حتما باید وارد شود"),
-//   email: yup
-//     .string()
-//     .email("ایمیل وارد شده معتبر نیست")
-//     .required("شما حتما باید ایمیل خود را وارد کنید"),
-//   password: yup.string().required("شما حتما باید رمز عبور را وارد کنید"),
-//   vpassword: yup
-//     .string()
-//     .oneOf([yup.ref("password")], "تکرار رمز عبور با رمز عبور برابر نیست")
-//     .required("شما حتما باید رمز عبور را وارد کنید"),
-//   bio: yup.string().max(100, "بیوگرافی نباید بیشتر از ۱۰۰ کاراکتر باشد"),
-// });

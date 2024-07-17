@@ -7,12 +7,6 @@ interface AddTweetData {
   tags: string[];
 }
 
-// interface AddCommentData {
-//   body: string;
-//   tags: string[];
-//   reply: number[];
-// }
-
 interface AddTweetData {
   body: string;
   tags: string[];

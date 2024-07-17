@@ -15,18 +15,7 @@ export const useLogin = () => {
         .then((response) => response.data)
         .catch((error) => {
           console.log(error.response?.data?.message || "Login failed");
-          // throw new Error(error.response?.data?.message || "Login failed");
         });
     },
   });
 };
-
-// export const useLogin = () => {
-//   return useMutation({
-//     mutationKey: ["login"],
-//     mutationFn: async (body: FormData) => {
-//       const response = await Axios.post(`/api/${API_PATHS.LOGIN}/`, body);
-//       return response.data;
-//     },
-//   });
-// };
