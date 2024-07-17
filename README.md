@@ -33,12 +33,12 @@ This project has been designed and implemented for learning purposes under the s
 
 To use this project, follow these steps:
 
-- **1-Clone Repository:** Clone the repository using Git:
+- **Clone Repository:** Clone the repository using Git:
   `git clone https://github.com/safarigha/QuickTwitter.git`
-- **2-Navigate to Project Directory:** Navigate into the project directory:
+- **Navigate to Project Directory:** Navigate into the project directory:
   `cd project-directory`
-- **3-Install Dependencies:** Install project dependencies using npm:
+- **Install Dependencies:** Install project dependencies using npm:
   `npm install`
-- **4-Run Development Server:** Finally, start the development server to run the project:
+- **Run Development Server:** Finally, start the development server to run the project:
   `npm run dev`
   By following these steps, your project will be loaded using Vite and running in development mode, ready to be viewed in your web browser.
