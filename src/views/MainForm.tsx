@@ -5,28 +5,14 @@ import TweerForm from "../views/TweetForm";
 import useProfileData from "../components/profile";
 import formatDate from "../hooks/generateDate";
 import { useFollowingTweets } from "../components/tweetList";
-
-type Tweet = {
-  id: number;
-  body: string;
-  reply: [];
-  comment: [];
-  favorites: [];
-  favcount: number;
-  tags: [];
-  createdAt: string;
-  user: {
-    username: string;
-    id: number;
-  };
-};
+import { TweetMainForm } from "../configs/interfaces";
 
 const MainForm: React.FC = () => {
   const [activeTab, setActiveTab] = useState("you");
   const { safeUserData } = useProfileData();
-  const yourTweets: Tweet[] = safeUserData.tweets ?? [];
+  const yourTweets: TweetMainForm[] = safeUserData.tweets ?? [];
   const { followingUserData } = useFollowingTweets();
-  const followingTweets: Tweet[] = followingUserData.tweets ?? [];
+  const followingTweets: TweetMainForm[] = followingUserData.tweets ?? [];
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);

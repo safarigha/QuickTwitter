@@ -7,11 +7,7 @@ import {
 } from "react-icons/ri";
 import { useAddTweet } from "../components/tweet";
 import { toast } from "react-toastify";
-
-interface AddTweetData {
-  body: string;
-  tags: string[];
-}
+import { AddTweetData } from "../configs/interfaces";
 
 const TweetForm: React.FC = () => {
   const [tweet, setTweet] = useState("");

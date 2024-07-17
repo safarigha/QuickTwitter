@@ -1,17 +1,15 @@
-export type FormData = {
-  email: string;
-  password: string;
-  confirmPassword: string;
-  username: string;
-  bio: string;
-};
+import {
+  FormDataSignupValidation,
+  FormErrorSignupValidation,
+} from "../configs/interfaces";
 
-export type FormError = Partial<FormData>;
 const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/;
 
-export const validateStepOne = (formData: FormData): FormError => {
-  const newError: FormError = {};
+export const validateStepOne = (
+  formData: FormDataSignupValidation
+): FormErrorSignupValidation => {
+  const newError: FormErrorSignupValidation = {};
 
   if (!formData.email) {
     newError.email = "لطفا ایمیل را وارد کنید";
@@ -34,8 +32,10 @@ export const validateStepOne = (formData: FormData): FormError => {
   return newError;
 };
 
-export const validateStepTwo = (formData: FormData): FormError => {
-  const newError: FormError = {};
+export const validateStepTwo = (
+  formData: FormDataSignupValidation
+): FormErrorSignupValidation => {
+  const newError: FormErrorSignupValidation = {};
 
   if (!formData.username) {
     newError.username = "لطفا نام کاربری را وارد کنید";

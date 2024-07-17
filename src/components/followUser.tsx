@@ -1,9 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-
-interface FollowUserData {
-  username: string;
-}
+import { FollowUserData } from "../configs/interfaces";
 
 export const useFollowUser = () => {
   return useMutation({

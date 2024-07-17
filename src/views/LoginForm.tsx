@@ -6,23 +6,14 @@ import { validateLogin } from "../validations/loginValidation";
 import { toast } from "react-toastify";
 import { useLogin } from "../components/login";
 import { useUser } from "../contexts/UserContext";
-
-type FormData = {
-  username: string;
-  password: string;
-};
-
-type FormError = {
-  username?: string;
-  password?: string;
-};
+import { FormDataLoginForm, FormErrorLoginForm } from "../configs/interfaces";
 
 const LoginForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<FormDataLoginForm>({
     username: "",
     password: "",
   });
-  const [error, setError] = useState<FormError>({});
+  const [error, setError] = useState<FormErrorLoginForm>({});
   const { setUsername } = useUser();
   const { mutate } = useLogin();
   const navigate = useNavigate();

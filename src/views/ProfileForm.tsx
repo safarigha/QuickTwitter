@@ -3,39 +3,17 @@ import Layout from "../Layout";
 import { RiHeartLine, RiMessage3Line, RiUserLine } from "react-icons/ri";
 import useProfileData from "../components/profile";
 import formatDate from "../hooks/generateDate";
-
-type User = {
-  id: number;
-  username: string;
-  biography: string;
-};
-
-type Tweet = {
-  id: number;
-  body: string;
-  reply: [];
-  comment: [];
-  favorites: [];
-  favcount: number;
-  tags: [];
-  createdAt: string;
-  user: {
-    username: string;
-    id: number;
-  };
-};
+import { TweetData, UserProfileForm } from "../configs/interfaces";
 
 const ProfileForm: React.FC = () => {
   const { safeUserData } = useProfileData();
 
-  const youTweets: Tweet[] = safeUserData.tweets ?? [];
-  const followers: User[] = safeUserData.followers ?? [];
-  const followings: User[] = safeUserData.followings ?? [];
+  const youTweets: TweetData[] = safeUserData.tweets ?? [];
+  const followers: UserProfileForm[] = safeUserData.followers ?? [];
+  const followings: UserProfileForm[] = safeUserData.followings ?? [];
 
-  // متغیری برای ذخیره فعال بودن تب‌ها
   const [activeTab, setActiveTab] = useState("post");
 
-  // تابعی برای تغییر فعال بودن تب
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
   };

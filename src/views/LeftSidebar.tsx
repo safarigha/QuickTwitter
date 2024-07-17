@@ -3,15 +3,9 @@ import { NavLink } from "react-router-dom";
 import { API_PATHS } from "../configs/API_PATHS";
 import { useUser } from "../contexts/UserContext";
 import LogoutAccount from "../hooks/LogoutAccount";
+import { NavItemLeftSidebar } from "../configs/interfaces";
 
-type NavItem = {
-  to: string;
-  src: string;
-  alt: string;
-  text: string;
-};
-
-const navItems: NavItem[] = [
+const navItems: NavItemLeftSidebar[] = [
   {
     to: API_PATHS.HOME,
     src: `/icons/home.png`,

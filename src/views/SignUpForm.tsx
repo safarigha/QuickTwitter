@@ -5,9 +5,9 @@ import API_PATHS from "../configs/API_PATHS";
 import {
   validateStepOne,
   validateStepTwo,
-  FormError,
 } from "../validations/signUpValidation";
 import { toast } from "react-toastify";
+import { FormErrorSignupValidation } from "../configs/interfaces";
 
 // FormData type
 type FormData = {
@@ -29,7 +29,7 @@ const SignUpForm: React.FC = () => {
     bio: "",
   });
 
-  const [error, setError] = useState<FormError>({});
+  const [error, setError] = useState<FormErrorSignupValidation>({});
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

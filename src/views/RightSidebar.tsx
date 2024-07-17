@@ -4,21 +4,7 @@ import { toast } from "react-toastify";
 import { RiUserLine } from "react-icons/ri";
 import formatDate from "../hooks/generateDate";
 import useSearch from "../components/search";
-
-type Tweet = {
-  id: number;
-  body: string;
-  reply: [];
-  comment: [];
-  favorites: [];
-  favcount: number;
-  tags: [];
-  createdAt: string;
-  user: {
-    username: string;
-    id: number;
-  };
-};
+import { TweetData } from "../configs/interfaces";
 
 const RightSidebar: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,7 +12,7 @@ const RightSidebar: React.FC = () => {
   const followUserMutation = useFollowUser();
   const { safeUserData } = useSearch(searchTerm);
 
-  const searchData: Tweet[] = safeUserData.tweets ?? [];
+  const searchData: TweetData[] = safeUserData.tweets ?? [];
 
   const handleKeyDownSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
