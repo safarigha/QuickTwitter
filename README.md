@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project has been designed and implemented for learning purposes under the supervision of Koora Institute and mentor [Mohammadreza Babayi](https://github.com/mbabayi574). The main goal of this project is to learn React concepts, use Tailwind CSS for UI design, and leverage TypeScript to ensure type safety in the code structure.
+This project has been designed and implemented for learning purposes under the supervision of Quera Institute. The main goal of this project is to learn React concepts, use Tailwind CSS for UI design, and leverage TypeScript to ensure type safety in the code structure.
 
 ## Project Features
 
